@@ -1,0 +1,33 @@
+void fold(vector<int> v, int pos, vector<int> &saida)
+{
+
+    if (pos > 0)
+    {
+        vector<int> left = {v.begin(), v.begin() + pos};
+        vector<int> right = {v.begin() + pos, v.end()};
+        reverse(left.begin(), left.end());
+
+        vector<int> menor = (right.size() <= left.size()) ? right : left;
+        saida = (right.size() <= left.size()) ? left : right;
+
+        for (int i = 0; i < menor.size(); i++)
+            saida[i] += menor[i];
+
+        reverse(saida.begin(), saida.end());
+    }
+    else
+    {
+        pos *= -1;
+        vector<int> left = {v.begin(), v.end() - pos};
+        vector<int> right = {v.end() - pos, v.end()};
+        reverse(left.begin(), left.end());
+
+        vector<int> menor = (right.size() <= left.size()) ? right : left;
+        saida = (right.size() <= left.size()) ? left : right;
+
+        for (int i = 0; i < menor.size(); i++)
+            saida[i] += menor[i];
+
+        reverse(saida.begin(), saida.end());
+    }
+}
